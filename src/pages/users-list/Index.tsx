@@ -3,12 +3,21 @@ import Layout from '../../core/Layout'
 import TableHeader from './components/TableHeader'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
+import { getAge } from '../../functions/getAge'
+
+interface userType {
+    dateOfBirth : string,
+    name : string,
+    phoneNumber : string,
+    email : string,
+    street : string,
+    company : string
+}
+
 const Index = () => {
 
     const queryClient = useQueryClient()
     const {data} = useQuery({ queryKey: ['todos'], queryFn: () =>  axios.get("https://63c2988fe3abfa59bdaf89f6.mockapi.io/users") })
-
-    console.log(data);
     
   return (
     <Layout>
@@ -18,24 +27,24 @@ const Index = () => {
        <TableHeader/>
         <tbody>
             {
-                data?.data.map((el : any) => 
-                    <tr className="bg-surface-200 ">
-                    <td className="px-6 py-4 border border-surface-300">
+                data?.data.map((el : userType) => 
+                    <tr className="odd:bg-surface-200 even:bg-surface-100">
+                    <td className="p-6 text-center border border-surface-300">
                         {el.name}
                     </td>
-                    <td className="px-6 text-center py-4 border border-surface-300">
-                        Silver
+                    <td className="p-6 text-center border border-surface-300">
+                        {getAge(el.dateOfBirth)}
                     </td>
-                    <td className="px-6 text-center py-4 border border-surface-300">
+                    <td className="p-6 text-center border border-surface-300">
                         {el.phoneNumber}
                     </td>
-                    <td className="px-6 text-center py-4 border border-surface-300">
+                    <td className="p-6 text-center border border-surface-300">
                         {el.email}
                     </td>
-                    <td className="px-6 text-center py-4 border border-surface-300">
+                    <td className="p-6 text-center border border-surface-300">
                         {el.street}
                     </td>
-                    <td className="px-6 text-center py-4 border border-surface-300">
+                    <td className="p-6 text-center border border-surface-300">
                         {el.company}
                     </td>
                 </tr>
