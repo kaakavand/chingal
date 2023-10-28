@@ -6,6 +6,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { getAge } from "../../functions/getAge";
 import { ClockLoader } from "react-spinners";
+import Breadcrumb from "../../core/Breadcrumb";
 
 interface userType {
   dateOfBirth: string;
@@ -15,7 +16,7 @@ interface userType {
   street: string;
   company: string;
   id: number;
-  age : number
+  age: number;
 }
 
 const Index = () => {
@@ -31,7 +32,13 @@ const Index = () => {
 
   return (
     <Layout onChangeSearch={(value: string) => setValueSearch(value)}>
-      <div className="relative mt-4">
+      <Breadcrumb
+        list={[
+          { label: "کاربران", route: "" },
+        ]}
+      />
+
+      <div className="relative">
         <table className="w-full bg-surface-300 border rounded-xl overflow-hidden border-surface-300 text-sm text-right text-surface-900">
           <TableHeader />
           <tbody>
