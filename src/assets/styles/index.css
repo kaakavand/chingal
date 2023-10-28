@@ -1,3 +1,9 @@
+@import url(./../fonts/IranYekan/fontFace.css);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    direction: rtl;
+    background-color: #020B1F;
+}
