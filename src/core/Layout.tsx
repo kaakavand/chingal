@@ -1,20 +1,27 @@
 import React from 'react'
-import logo from './../assets/images/chingal-logo.svg'
+import SearchUsers from './SearchUsers'
+import { useQueryClient } from '@tanstack/react-query';
 interface propsType {
-    children : any
+    children : any,
+    onChangeSearch : Function
 }
 
-const Layout = ({children} : propsType) => {
+const logo = require("./../assets/images/chingal-logo.png") as string;
+
+const Layout = ({children , onChangeSearch} : propsType) => {
+
+
+    
+
   return (
     <>
         <header className='bg-surface-100 border-b-2 border-surface-300 py-4'>
-            <div className="container flex justify-between  mx-auto">
+            <div className="container flex justify-between  mx-auto items-center">
             <figure className='w-40'>
                 <img src={logo} alt="logo" />
             </figure>
             <div>
-                <input className='p-1 rounded-full' type="text" />
-                <button>Dark</button>
+            <SearchUsers onChange={(value : string) => onChangeSearch(value)}/>
             </div>
             </div>
         </header>

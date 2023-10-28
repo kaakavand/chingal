@@ -9,6 +9,7 @@ module.exports = {
       'sans': ['iranYekan'],
     },
     colors: {
+      transparent: 'transparent',
       surface: {
         100: '#020B1F',
         200: '#0C132C',

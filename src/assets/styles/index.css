@@ -7,3 +7,9 @@ body {
     direction: rtl;
     background-color: #020B1F;
 }
+
+
+form {
+    background: rgb(2,0,36);
+    background: linear-gradient(185deg, rgba(2,0,36,1) 0%, rgba(24,32,64,1) 100%);
+}
