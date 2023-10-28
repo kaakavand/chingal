@@ -10,6 +10,8 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
+      primary: '#0559FD',
+      red: '#FF4645',
       surface: {
         100: '#020B1F',
         200: '#0C132C',
