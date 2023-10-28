@@ -19,7 +19,7 @@ const Index = () => {
   
 
   return (
-    <Layout onChangeSearch={() => true}>
+    <Layout displayInput={false} onChangeSearch={() => true}>
       <Form data={data}/>
     </Layout>
   );

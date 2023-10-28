@@ -15,6 +15,7 @@ interface userType {
   street: string;
   company: string;
   id: number;
+  age : number
 }
 
 const Index = () => {
@@ -43,7 +44,7 @@ const Index = () => {
                   {el.name}
                 </td>
                 <td className="p-6 text-center border border-surface-300">
-                  {getAge(el.dateOfBirth)}
+                  {el.age}
                 </td>
                 <td className="p-6 text-center border border-surface-300">
                   {el.phoneNumber}

@@ -1,18 +1,62 @@
 import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ValidationInput from "../../../core/ValidationInput";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 interface IFormInput {
-  firstName: string;
+  age: number;
+  avatar: string;
+  city: string;
+  company: string;
+  country: string;
+  email: string;
+  id: number;
+  name: string;
+  phoneNumber: string;
+  street: string;
+  zipcode: string;
   userName: string;
 }
 
+const profile = require("./../../../assets/images/image.png") as string;
+
 const Form = ({ data }: any) => {
-  const { register, handleSubmit, setValue, formState } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const { register, handleSubmit, setValue, formState, getValues } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (data) => mutate();
+  const { id } = useParams();
 
-  useEffect(() => {}, [data]);
+  useEffect(() => {
+    setValue("age", data?.data.age);
+    setValue("userName", data?.data.name);
+    setValue("email", data?.data.email);
+    setValue("phoneNumber", data?.data.phoneNumber);
+    setValue("country", data?.data.country);
+    setValue("city", data?.data.city);
+    setValue("street", data?.data.street);
+    setValue("zipcode", data?.data.zipcode);
+    setValue("company", data?.data.company);
+  }, [data]);
 
+  const { mutate } = useMutation({
+    mutationFn: (newTodo) => {
+      // const formData = new FormData()
+      // formData.append()
+      return axios.put(
+        "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/" + id,
+        getValues()
+      );
+    },
+  });
+
+  const { mutate: deleteMethod } = useMutation({
+    mutationFn: (newTodo) => {
+      return axios.delete(
+        "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/" + id
+      );
+    },
+  });
 
   return (
     <div className="w-full flex items-center justify-center">
@@ -24,8 +68,8 @@ const Form = ({ data }: any) => {
         <h3 className="text-surface-900 border-b-2 border-b-surface-300 pb-2 text-xl">
           ویرایش کاربر
         </h3>
-        <figure className="w-28 h-28 rounded-full bg-surface-300 my-4">
-          <img src="" alt="" />
+        <figure className="w-28 h-28 rounded-full border-2 border-primary p-1 bg-surface-300 my-4 mx-auto">
+          <img src={profile} alt="" />
         </figure>
         <div className="flex gap-4 mb-6">
           <ValidationInput
@@ -97,7 +141,10 @@ const Form = ({ data }: any) => {
           >
             ویرایش
           </button>
-          <button className="rounded-xl bg-red text-surface-900 shadow shadow-red w-full p-2">
+          <button
+            className="rounded-xl bg-red text-surface-900 shadow shadow-red w-full p-2"
+            onClick={() => deleteMethod()}
+          >
             حذف
           </button>
         </div>
