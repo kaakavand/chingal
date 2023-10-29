@@ -7,6 +7,7 @@ import axios from "axios";
 import { getAge } from "../../functions/getAge";
 import { ClockLoader } from "react-spinners";
 import Breadcrumb from "../../core/Breadcrumb";
+import { TableItem } from "./components/TableItem";
 
 interface userType {
   dateOfBirth: string;
@@ -19,53 +20,42 @@ interface userType {
   age: number;
 }
 
+interface SortState {
+  key: string;
+  order: boolean | undefined;
+}
+
 const Index = () => {
   const [valueSearch, setValueSearch] = useState("");
+  const [sortValue, setSortValue] = useState<SortState>({
+    key: "",
+    order: undefined,
+  });
   const { data, isLoading } = useQuery({
-    queryKey: ["users", valueSearch],
+    queryKey: ["users", valueSearch, sortValue],
     queryFn: () =>
       axios.get(
-        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users?search=${valueSearch}`
+        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users?search=${valueSearch}${
+          sortValue.order !== undefined
+            ? "&sortBy=" +
+              sortValue.key +
+              "&order=" +
+              (sortValue.order === true ? "asc" : "desc")
+            : ""
+        }`
       ),
   });
-  const navigate = useNavigate();
 
   return (
     <Layout onChangeSearch={(value: string) => setValueSearch(value)}>
-      <Breadcrumb
-        list={[
-          { label: "کاربران", route: "" },
-        ]}
-      />
+      <Breadcrumb list={[{ label: "کاربران", route: "" }]} />
 
       <div className="relative">
         <table className="w-full bg-surface-300 border rounded-xl overflow-hidden border-surface-300 text-sm text-right text-surface-900">
-          <TableHeader />
+          <TableHeader changeSort={(value: SortState) => setSortValue(value)} />
           <tbody>
             {data?.data.map((el: userType) => (
-              <tr
-                className="odd:bg-surface-200 even:bg-surface-100 cursor-pointer hover:opacity-80 transition duration-200"
-                onClick={() => navigate("/users/" + el.id)}
-              >
-                <td className="p-6 text-center border border-surface-300">
-                  {el.name}
-                </td>
-                <td className="p-6 text-center border border-surface-300">
-                  {el.age}
-                </td>
-                <td className="p-6 text-center border border-surface-300">
-                  {el.phoneNumber}
-                </td>
-                <td className="p-6 text-center border border-surface-300">
-                  {el.email}
-                </td>
-                <td className="p-6 text-center border border-surface-300">
-                  {el.street}
-                </td>
-                <td className="p-6 text-center border border-surface-300">
-                  {el.company}
-                </td>
-              </tr>
+              <TableItem obj={el} />
             ))}
           </tbody>
         </table>

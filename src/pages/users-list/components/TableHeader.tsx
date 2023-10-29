@@ -1,30 +1,56 @@
-import React from 'react'
+import React, { useState , useEffect } from "react";
+import ThTable from "../../../core/ThTable";
 
-const TableHeader = () => {
+const TableHeader = ({changeSort} : any) => {
+  const [sortValue, setSortValue] = useState<{key : string, order : boolean | undefined}>({key : '' , order : undefined});
+
+  useEffect(() => {
+    changeSort(sortValue)
+  }, [sortValue])
+  
+  
   return (
     <thead className="text-xs text-surface-500 uppercase  bg-surface-100">
-    <tr>
-        <th scope="col" className="px-6 py-3 text-center border border-surface-300">
-            نام کاربر
-        </th>
-        <th scope="col" className="px-6 py-3 text-center border border-surface-300">
-            سن
-        </th>
-        <th scope="col" className="px-6 py-3 text-center border border-surface-300">
-            شماره تلفن
-        </th>
-        <th scope="col" className="px-6 py-3 text-center border border-surface-300">
-            آیمیل
-        </th>
-        <th scope="col" className="px-6 py-3 text-center border border-surface-300">
-            آدرس
-        </th>
-        <th scope="col" className="px-6 py-3 text-center border border-surface-300">
-            شرکت
-        </th>
-    </tr>
-</thead>
-  )
-}
+      <tr>
+        <ThTable
+          onChange={(value: any) => setSortValue(value)}
+          id="name"
+          title={"نام کاریر"}
+          value={sortValue}
+        />
+        <ThTable
+          onChange={(value: any) => setSortValue(value)}
+          id="age"
+          title={"سن"}
+          value={sortValue}
+        />
+        <ThTable
+          onChange={(value: any) => setSortValue(value)}
+          id="phoneNumber"
+          title={"شماره همراه"}
+          value={sortValue}
+        />
+        <ThTable
+          onChange={(value: any) => setSortValue(value)}
+          id="email"
+          title={"ایمیل"}
+          value={sortValue}
+        />
+        <ThTable
+          onChange={(value: any) => setSortValue(value)}
+          id="street"
+          title={"آدرس"}
+          value={sortValue}
+        />
+        <ThTable
+          onChange={(value: any) => setSortValue(value)}
+          id="company"
+          title={"شرکت"}
+          value={sortValue}
+        />
+      </tr>
+    </thead>
+  );
+};
 
-export default TableHeader
+export default TableHeader;

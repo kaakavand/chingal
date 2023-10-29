@@ -29,7 +29,7 @@ const Form = ({ data }: any) => {
 
   useEffect(() => {
     setValue("age", data?.data.age);
-    setValue("userName", data?.data.name);
+    setValue("name", data?.data.name);
     setValue("email", data?.data.email);
     setValue("phoneNumber", data?.data.phoneNumber);
     setValue("country", data?.data.country);
@@ -76,7 +76,7 @@ const Form = ({ data }: any) => {
             value={""}
             register={register}
             label={"نام کاربری"}
-            id={"userName"}
+            id={"name"}
             errors={formState.errors}
           />
           <ValidationInput
