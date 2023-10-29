@@ -1,7 +1,9 @@
 import React from "react";
 import SearchUsers from "./SearchUsers";
-import { useQueryClient } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import ToggleThem from "./ToggleThem";
+import RouteConfig from './../config/router.json'
+
 interface propsType {
   children: React.ReactNode;
   onChangeSearch: Function;
@@ -22,6 +24,7 @@ const Layout = ({
           <figure className="w-40">
             <img src={logo} alt="logo" />
           </figure>
+          
           <div className="flex">
             {displayInput && (
               <SearchUsers

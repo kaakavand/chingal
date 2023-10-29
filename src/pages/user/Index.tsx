@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Breadcrumb from "../../core/Breadcrumb";
+import RouteConfig from './../../config/router.json'
 
 const Index = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const Index = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["users", id],
     queryFn: () =>
-      axios.get(`https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`),
+      axios.get(`${RouteConfig.baseUrl}users/${id}`),
   });
 
   return (

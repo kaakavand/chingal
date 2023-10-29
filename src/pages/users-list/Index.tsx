@@ -8,6 +8,7 @@ import { getAge } from "../../functions/getAge";
 import { ClockLoader } from "react-spinners";
 import Breadcrumb from "../../core/Breadcrumb";
 import { TableItem } from "./components/TableItem";
+import RouteConfig from './../../config/router.json'
 
 interface userType {
   dateOfBirth: string;
@@ -37,7 +38,7 @@ const Index = () => {
     queryKey: ["users", valueSearch, sortValue],
     queryFn: () =>
       axios.get(
-        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users?search=${valueSearch}${
+        `${RouteConfig.baseUrl}users?search=${valueSearch}${
           sortValue.order !== undefined
             ? "&sortBy=" +
               sortValue.key +

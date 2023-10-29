@@ -4,6 +4,7 @@ import ValidationInput from "../../../core/ValidationInput";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import RouteConfig from "./../../../config/router.json";
 
 interface IFormInput {
   age: number;
@@ -44,18 +45,13 @@ const Form = ({ data }: any) => {
     mutationFn: (newTodo) => {
       // const formData = new FormData()
       // formData.append()
-      return axios.put(
-        "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/" + id,
-        getValues()
-      );
+      return axios.put(RouteConfig.baseUrl + "users/" + id, getValues());
     },
   });
 
   const { mutate: deleteMethod } = useMutation({
     mutationFn: (newTodo) => {
-      return axios.delete(
-        "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/" + id
-      );
+      return axios.delete(RouteConfig.baseUrl + "users/" + id);
     },
   });
 
