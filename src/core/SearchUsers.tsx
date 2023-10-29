@@ -20,7 +20,7 @@ const SearchUsers = ({ onChange }: any) => {
 
   return (
     <form
-      className="w-72 border-surface-300 p-1 border rounded-xl flex items-center py-1 px-2 formBgGradient"
+      className="border-surface-300 p-1 border rounded-xl flex items-center py-1 px-2 formBgGradient xl:w-72"
       action=""
     >
       <img className="w-5 h-5" src={searchIcon} alt="seacrh" />

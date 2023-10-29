@@ -23,7 +23,8 @@ interface IFormInput {
 const profile = require("./../../../assets/images/image.png") as string;
 
 const Form = ({ data }: any) => {
-  const { register, handleSubmit, setValue, formState, getValues } = useForm<IFormInput>();
+  const { register, handleSubmit, setValue, formState, getValues } =
+    useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => mutate();
   const { id } = useParams();
 
@@ -63,7 +64,7 @@ const Form = ({ data }: any) => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""
-        className="bg-surface-100 shadow-surface-700 border rounded-2xl border-surface-300 w-2/6 py-8 px-10"
+        className="bg-surface-100 shadow-surface-700 border rounded-2xl border-surface-300 md:w-[30rem] py-8 px-10"
       >
         <h3 className="text-surface-900 border-b-2 border-b-surface-300 pb-2 text-xl">
           ویرایش کاربر
@@ -100,31 +101,35 @@ const Form = ({ data }: any) => {
             errors={formState.errors}
           />
         </div>
-        <div className="flex gap-4 mb-6">
-          <ValidationInput
-            register={register}
-            label={"کشور"}
-            id={"country"}
-            errors={formState.errors}
-          />
-          <ValidationInput
-            register={register}
-            label={"شهر"}
-            id={"city"}
-            errors={formState.errors}
-          />
-          <ValidationInput
-            register={register}
-            label={"خیابان"}
-            id={"street"}
-            errors={formState.errors}
-          />
-          <ValidationInput
-            register={register}
-            label={"کد پستی"}
-            id={"zipcode"}
-            errors={formState.errors}
-          />
+        <div className="sm:flex gap-4">
+          <div className="flex gap-4 mb-6">
+            <ValidationInput
+              register={register}
+              label={"کشور"}
+              id={"country"}
+              errors={formState.errors}
+            />
+            <ValidationInput
+              register={register}
+              label={"شهر"}
+              id={"city"}
+              errors={formState.errors}
+            />
+          </div>
+          <div className="flex gap-4 mb-6">
+            <ValidationInput
+              register={register}
+              label={"خیابان"}
+              id={"street"}
+              errors={formState.errors}
+            />
+            <ValidationInput
+              register={register}
+              label={"کد پستی"}
+              id={"zipcode"}
+              errors={formState.errors}
+            />
+          </div>
         </div>
         <div className="flex gap-4 mb-6">
           <ValidationInput

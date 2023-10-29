@@ -51,8 +51,7 @@ const Index = () => {
   return (
     <Layout onChangeSearch={(value: string) => setValueSearch(value)}>
       <Breadcrumb list={[{ label: "کاربران", route: "" }]} />
-
-      <div className="relative">
+      <div className="relative overflow-x-auto">
         <table className="w-full bg-surface-300 border rounded-xl overflow-hidden border-surface-300 text-sm text-right text-surface-900">
           <TableHeader changeSort={(value: SortState) => setSortValue(value)} />
           <tbody>
