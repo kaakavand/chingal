@@ -74,7 +74,6 @@ const Form = ({ data }: any) => {
         </figure>
         <div className="flex gap-4 mb-6">
           <ValidationInput
-            value={""}
             register={register}
             label={"نام کاربری"}
             id={"name"}

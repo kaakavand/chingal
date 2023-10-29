@@ -3,7 +3,7 @@ import { useDebouncedCallback } from "use-debounce";
 
 const searchIcon = require("./../assets/images/search-icon.png") as string;
 
-const SearchUsers = ({ onChange }: any) => {
+const SearchUsers = ({ onChange }: {onChange : Function}) => {
   const [value, setValue] = useState("");
   const debounced = useDebouncedCallback((value) => {
     onChange(value);

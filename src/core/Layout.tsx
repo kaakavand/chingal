@@ -3,7 +3,7 @@ import SearchUsers from "./SearchUsers";
 import { useQueryClient } from "@tanstack/react-query";
 import ToggleThem from "./ToggleThem";
 interface propsType {
-  children: any;
+  children: React.ReactNode;
   onChangeSearch: Function;
   displayInput?: boolean;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ThTable from "../../../core/ThTable";
 
-const TableHeader = ({ changeSort }: any) => {
+const TableHeader = ({ changeSort }: { changeSort: Function }) => {
   const [sortValue, setSortValue] = useState<{
     key: string;
     order: boolean | undefined;
@@ -15,7 +15,7 @@ const TableHeader = ({ changeSort }: any) => {
     }
   }, []);
 
-  const handleChange = (value: any) => {
+  const handleChange = (value: { key: string; order: boolean | undefined }) => {
     setSortValue(value);
     localStorage.setItem("sortValue", JSON.stringify(value));
     changeSort(value);
