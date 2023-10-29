@@ -14,7 +14,10 @@ const root = ReactDOM.createRoot(
 axios.interceptors.response.use(
   (res) => {
     // Add configurations here
-    toast.success(res.statusText);
+
+    if(res.config.method !== 'get'){
+      toast.success(res.statusText);
+    }
     return res;
   },
   (err) => {

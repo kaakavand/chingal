@@ -34,12 +34,12 @@ const ThTable = ({
       onClick={handleClick}
       className={`${
         order.order !== undefined && "bg-primary text-surface-900"
-      } px-6 py-3 text-center border border-surface-300 hover:opacity-80 transition duration-200 cursor-pointer`}
+      } px-6 py-3 w-40 text-center border border-surface-300 hover:opacity-80 transition duration-200 cursor-pointer`}
     >
       <div className="flex justify-center items-center ">
         {title}
         {order.order !== undefined && (
-          <div className="mr-4">
+          <div className="mr-2">
             <svg
               width="18"
               height="9"

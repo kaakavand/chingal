@@ -16,6 +16,8 @@ interface userType {
   email: string;
   street: string;
   company: string;
+  country: string;
+  city: string;
   id: number;
   age: number;
 }

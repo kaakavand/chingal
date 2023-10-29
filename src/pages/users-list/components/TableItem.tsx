@@ -8,6 +8,8 @@ interface userType {
   email: string;
   street: string;
   company: string;
+  country: string;
+  city: string;
   id: number;
   age: number;
 }
@@ -20,16 +22,16 @@ export const TableItem = ({ obj }: { obj: userType }) => {
       className="odd:bg-surface-200 even:bg-surface-100 cursor-pointer hover:opacity-80 transition duration-200"
       onClick={() => navigate("/users/" + obj.id)}
     >
-      <td className="p-6 text-center border border-surface-300">{obj.name}</td>
-      <td className="p-6 text-center border border-surface-300">{obj.age}</td>
-      <td className="p-6 text-center border border-surface-300">
+      <td className="py-6 text-center border border-surface-300">{obj.name}</td>
+      <td className="py-6 text-center border border-surface-300">{obj.age}</td>
+      <td className="py-6 text-center border border-surface-300">
         {obj.phoneNumber}
       </td>
-      <td className="p-6 text-center border border-surface-300">{obj.email}</td>
-      <td className="p-6 text-center border border-surface-300">
-        {obj.street}
+      <td className="py-6 text-center border border-surface-300">{obj.email}</td>
+      <td className="py-6 text-center border border-surface-300">
+        {obj.country + " , " + obj.city + " , " + obj.street}
       </td>
-      <td className="p-6 text-center border border-surface-300">
+      <td className="py-6 text-center border border-surface-300">
         {obj.company}
       </td>
     </tr>

@@ -1,6 +1,7 @@
 import React from "react";
 import SearchUsers from "./SearchUsers";
 import { useQueryClient } from "@tanstack/react-query";
+import ToggleThem from "./ToggleThem";
 interface propsType {
   children: any;
   onChangeSearch: Function;
@@ -17,8 +18,9 @@ const Layout = ({ children, onChangeSearch , displayInput = true}: propsType) =>
           <figure className="w-40">
             <img src={logo} alt="logo" />
           </figure>
-          <div>
+          <div className="flex">
           {displayInput && <SearchUsers onChange={(value: string) => onChangeSearch(value)} />}
+          <ToggleThem/>
           </div>
         </div>
       </header>
